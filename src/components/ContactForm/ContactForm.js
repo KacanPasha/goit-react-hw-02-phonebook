@@ -1,7 +1,8 @@
 import React from 'react';
-import { Formik, Field, Form, ErrorMessage } from 'formik';
+import { Formik, Field } from 'formik';
 import InputMask from 'react-input-mask';
 import * as Yup from 'yup';
+import { BlockLabel, BlocForm, BlockError, FieldСontainer, Btn } from './ContactForm.Style';
 
 const schema = Yup.object().shape({
   name: Yup.string().min(3, 'Too short').required('This field is required'),
@@ -20,19 +21,19 @@ export const ContactForm = ({ onAdd }) => (
     }}
     validationSchema={schema}
     onSubmit={(values, helpers) => {
-      onAdd( values );
+      onAdd(values);
       helpers.resetForm();
     }}
   >
-    <Form>
-      <label>
-        Name
+    <BlocForm>
+      <FieldСontainer>
+        <BlockLabel>Name</BlockLabel>
         <Field name="name" placeholder="Jane Smit" />
-        <ErrorMessage name="name" />
-      </label>
+        <BlockError name="name" component="div" />
+      </FieldСontainer>
 
-      <label>
-        Number
+      <FieldСontainer>
+        <BlockLabel>Number</BlockLabel>
         <Field
           name="number"
           validate={value => {
@@ -51,10 +52,10 @@ export const ContactForm = ({ onAdd }) => (
             />
           )}
         </Field>
-        <ErrorMessage name="number" />
-      </label>
+        <BlockError name="number" component="div" />
+      </FieldСontainer>
 
-      <button type="submit">Add contact</button>
-    </Form>
+      <Btn type="submit">Add contact</Btn>
+    </BlocForm>
   </Formik>
 );

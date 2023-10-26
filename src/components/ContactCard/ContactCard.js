@@ -1,4 +1,5 @@
 import React from 'react';
+import { Btn } from './ContactCard.Style';
 
 export const ContactCard = ({ contact: {id, name, number}, onDeleteContact }) => {
   
@@ -6,9 +7,9 @@ export const ContactCard = ({ contact: {id, name, number}, onDeleteContact }) =>
     <>
       <p>{name}</p>
       <p>{number}</p>
-      <button type="button" onClick={() => onDeleteContact(id)}>
+      <Btn type="button" onClick={() => onDeleteContact(id)}>
         Delete
-      </button>
+      </Btn>
     </>
   );
 };
